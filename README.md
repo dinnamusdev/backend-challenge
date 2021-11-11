@@ -9,7 +9,7 @@ Para realizar a validação da senha foi criado um serviço de validação que f
 	
 Tanto o serviço de validação como o componente validador são utilizados através de suas respectivas abstrações.
 	
-# Métodos da Api
+# Sobre a api
 
 | Método | Descrição |
 |---|---|
@@ -21,7 +21,7 @@ Tanto o serviço de validação como o componente validador são utilizados atra
 | `200` | Operação de validação realizada |
 | `400` | Erros na operação de validação |
 
-### Método de validação de Senha [POST]
+### Método da api de validação de Senha [POST]
 Uri:  /validator/v1/public/password
 
 Utilize para a validação da senha. Caso a validação seja bem-sucedida a api retornará True
