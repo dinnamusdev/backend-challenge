@@ -24,7 +24,7 @@ Tanto o serviço de validação como o componente validador são utilizados atra
 ### Método de validação de Senha [POST]
 Uri:  /validator/v1/public/password
 
-Utilize para a validação da senha. C
+Utilize para a validação da senha. Caso a validação seja bem-sucedida a api retornará True
 
 ### Dados para envio no POST
 | Parâmetro | Descrição |
