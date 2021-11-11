@@ -1,7 +1,15 @@
 # Documentação Api Backend-challenge
 Spring boot Api Rest de validação de senha
 
-# Métodos
+
+# Detalhes sobre a solução
+	Para implementar essa api inicialmente criei um componente que encapsulou todas as 	validações solicitadas.		
+	
+	Para realizar a validação da senha foi criado um serviço de validação que faz uso desse 	componente de validação.
+	
+	Tanto o serviço de validação como o componente validador são utilizados através de suas 	respectivas 	abstrações.
+	
+# Métodos da Api
 
 | Método | Descrição |
 |---|---|
@@ -38,4 +46,10 @@ Utilize para a validação da senha. C
             {
                 "passwordValidation": true                
             }
+            
+# Procedimento para execução do api
+	1) Instalar o java JRE 1.8
+	1) Abrir o prompt de comando e/ou shell
+	1) Acessar a pasta raiz do projeto
+	2) Executar o comando : mvn spring-boot:run
 	
