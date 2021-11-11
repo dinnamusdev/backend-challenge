@@ -2,6 +2,8 @@ package com.backend.services;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,48 +14,18 @@ class PasswordValidationServiceIntegrationTest {
 	@Autowired
 	PasswordValidationService passwordValidationService;  
 	
-	@Test
-	void passwordValidation_RetornarFalseParaValorVazio() {
-		Assertions.assertFalse(passwordValidationService.passwordValidation(""));
-	}
-	
-	@Test
-	void passwordValidation_RetornarFalseParaValoNulo() {
-		Assertions.assertFalse(passwordValidationService.passwordValidation(null));
+	@ParameterizedTest
+	@ValueSource(strings = {"","aa","ab", "AAAbbbCc","AbTp9!foo" ,"AbTp9!foA","AbTp9 fok","AbTp9!f1k~",
+				"AbTp9*f1kº","AbTp9)f1k§§'´","AbTp9(f1k]","AbTp9-]f1k","AbTp9+f1k["} )
+	void passwordValidation_RetornarFalseParaValorInvalido(String value) {
+		Assertions.assertFalse(passwordValidationService.passwordValidation(value));
 	}
 	
 	
-	@Test
-	void passwordValidation_RetornarTrueParaValorInvalido_1() {
-		Assertions.assertFalse(passwordValidationService.passwordValidation("aa"));
-	}
-
-	@Test
-	void passwordValidation_RetornarTrueParaValorInvalido_2() {
-		Assertions.assertFalse(passwordValidationService.passwordValidation("ab"));
-	}
-	@Test
-	void passwordValidation_RetornarTrueParaValorInvalido_3() {
-		Assertions.assertFalse(passwordValidationService.passwordValidation("AAAbbbCc"));
-	}
 	
-	@Test
-	void passwordValidation_RetornarTrueParaValorInvalido_4() {
-		Assertions.assertFalse(passwordValidationService.passwordValidation("AbTp9!foo"));
-	}
-	
-	@Test
-	void passwordValidation_RetornarTrueParaValorInvalido_5() {
-		Assertions.assertFalse(passwordValidationService.passwordValidation("AbTp9!foA"));
-	}
-
-	@Test
-	void passwordValidation_RetornarTrueParaValorInvalido_6() {
-		Assertions.assertFalse(passwordValidationService.passwordValidation("AbTp9 fok"));
-	}
-	
-	
-	@Test
+	@ParameterizedTest
+	@ValueSource(strings = {"AbTp9!f1k","AbTp9@f1k","AbTp9#f1k","AbTp9$f1k","AbTp9%f1k",
+			"AbTp9&f1k","AbTp9&f1k","AbTp9*f1k","AbTp9*f1k","AbTp9)f1k","AbTp9(f1k","AbTp9-f1k","AbTp9+f1k","AbTp9^f1k"} )
 	void passwordValidation_RetornarTrueParaValorValido() {
 		Assertions.assertTrue(passwordValidationService.passwordValidation("AbTp9!f1k"));
 	}

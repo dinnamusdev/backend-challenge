@@ -1,150 +1,47 @@
-package com.backend.services;
+package com.backend.component;
 
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
+import com.backend.component.validation.CheckMaximumTextSizeValidation;
+import com.backend.component.validation.CheckMinimumTextSizeValidation;
+import com.backend.component.validation.CheckPresenceAtLessOneDigitValidation;
+import com.backend.component.validation.CheckPresenceAtLessOneLowerLetterValidation;
+import com.backend.component.validation.CheckPresenceAtLessOneSpecialCharacterValidation;
+import com.backend.component.validation.CheckPresenceAtLessOneUpperLetterValidation;
+import com.backend.component.validation.CheckAbsentEmptySpacesValidation;
+import com.backend.component.validation.CheckAbsentOfRepeatedCharactersValidation;
+import com.backend.component.validation.Validation;
 
-@Slf4j
+
 @Component
-public class PasswordContentVerifyComponent implements PasswordContentVerify {
+public class PasswordContentVerifyComponent  {
 	
-	@Override
-	public boolean checkMinimumTextSize(String value) {
-
-		boolean isValid = false;
-
-		try {
-			isValid = value != null && value.length() >= 9;
-		} catch (Exception e) {
-			log.error("method(checkMinimumTextSize)", e);
-		}
-
-		return isValid;
-	}
-
-	@Override
-	public boolean checkPresenceAtLessOneDigit(String value) {
-
-		boolean isValid = false;
-
-		try {
-			isValid = value != null && value.matches("(?=.*[0-9]).*");
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			log.error("method(checkPresenceAtLessOneDigit)", e);
-		}
-
-		return isValid;
-	}
-
-	@Override
-	public boolean checkPresenceAtLessOneLowerLetter(String value) {
-
-		boolean isValid = false;
-
-		try {
-			isValid = value != null && value.matches("(?=.*[a-z]).*");
-		} catch (Exception e) {
-			log.error("method(checkPresenceAtLessOneLowerLetter)", e);
-		}
-
-		return isValid;
-	}
-
-	@Override
-	public boolean checkPresenceAtLessOneUpperLetter(String value) {
-		boolean isValid = false;
-
-		try {
-
-			isValid = value != null && value.matches("(?=.*[A-Z]).*");
-
-		} catch (Exception e) {
-			log.error("method(checkPresenceAtLessOneUpperLetter)", e);
-		}
-
-		return isValid;
-	}
-
-	@Override
-	public boolean checkPresenceAtLessOneSpecialCharacter(String value) {
-		boolean isValid = false;
-
-		try {
-
-			isValid = value != null && value.matches("(?=.*[!@#$%^&*()\\-+]).*");
-
-		} catch (Exception e) {
-
-			log.error("method(checkPresenceAtLessOneSpecialCharacter)", e);
-		}
-
-		return isValid;
-	}
-
-	@Override
-	public boolean checkPresenceEmptySpaces(String value) {
-		boolean isValid = false;
-
-		try {
-
-			isValid = value != null && value.matches("(?=.*[\\s]).*");
-			
-		} catch (Exception e) {
-			log.error("method(checkAbsenceEmptySpaces)", e);
-		}
-
-		return isValid;
-	}
-
-	@Override
-	public boolean checkPresenceOfRepeatedCharacters(String value) {
-
-		boolean isValid = false;
-
-		try {
-			if (value != null && !value.isEmpty()) {
-
-				Map<String, Long> collect = value.chars().mapToObj(i -> (char) i)
-						.collect(Collectors.groupingBy(Object::toString, Collectors.counting()));
-
-				collect.values().removeIf(new Predicate<Long>() {
-
-					@Override
-					public boolean test(Long value) {
-						return value <= 1;
-					}
-				});
-
-				isValid = (collect.size() >0 ? true : false);
-			}
-
-		} catch (Exception e) {
-			log.error("method(checkAbsenceOfRepeatedCharacters)", e);
-		}
+	@Bean
+	List<Validation> listOfValidation(){
+	
+		List<Validation> listValidation = new ArrayList<>();
 		
 		
-		return isValid;
-
+		listValidation.add(new CheckMaximumTextSizeValidation());
+		listValidation.add(new CheckMinimumTextSizeValidation());
+		listValidation.add(new CheckPresenceAtLessOneDigitValidation());
+		listValidation.add(new CheckPresenceAtLessOneDigitValidation());
+		listValidation.add(new CheckPresenceAtLessOneLowerLetterValidation());
+		listValidation.add(new CheckPresenceAtLessOneSpecialCharacterValidation());
+		listValidation.add(new CheckPresenceAtLessOneUpperLetterValidation());
+		listValidation.add(new CheckAbsentEmptySpacesValidation());
+		listValidation.add(new CheckAbsentOfRepeatedCharactersValidation());
+		
+		return listValidation;
+		
+		
+		
+		
 	}
 
-	@Override
-	public boolean checkMaximumTextSize(String value) {
-		boolean isValid = false;
-
-		try {
-			isValid = value != null && value.length() <= 255;
-		} catch (Exception e) {
-			log.error("method(checkMinimumTextSize)", e);
-		}
-
-		return isValid;
-	}
-
+	
 }

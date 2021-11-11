@@ -13,7 +13,7 @@ import com.backend.services.PasswordValidation;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @RestController
 @RequestMapping("/v1/public")
 
@@ -29,18 +29,10 @@ public class PasswordValidationController {
 	@RequestMapping(value = "/password", method = RequestMethod.POST)
 	public ResponseEntity<?> passwordValidate(@RequestBody PasswordDTO passwordDTO) {
 
-		try {
 			boolean resultadoValidacaoSenha = passwordValidationService.passwordValidation(passwordDTO.getPassword());
 
 			return new ResponseEntity<>(new PasswordValidationResponseDTO(resultadoValidacaoSenha), HttpStatus.OK);
-
-		} catch (Exception e) {
-
-			log.error("method(passwordValidate)", e);
-
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-
-		}
+			
 	}
 
 }

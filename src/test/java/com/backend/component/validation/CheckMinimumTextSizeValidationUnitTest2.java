@@ -13,24 +13,27 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.backend.component.PasswordContentVerifyComponent;
 
 @ExtendWith(SpringExtension.class)
-public class CheckMaximumTextSizeValidationUnitTest {
+public class CheckMinimumTextSizeValidationUnitTest2 {
 
 		
 	@InjectMocks
-	private CheckMaximumTextSizeValidation checkMaximumTextSizeValidation;
+	private CheckMinimumTextSizeValidation checkMinimumTextSizeValidation;
 		
 	
 	
 	//checkMinimumTextSize	
-	@ParameterizedTest
-	@ValueSource(strings = {"", " ", "aaaaaaaammmmm" } )
-	public void deveRetornarTrueParaValoresValidos(String value){
-		Assertions.assertTrue(checkMaximumTextSizeValidation.isValid(value));
+	@Test
+	public void deveRetornarTrueParaValoresValidos(){
+		
+		Assertions.assertTrue(checkMinimumTextSizeValidation.isValid(StringUtils.repeat("A", 10)));
+		
 		
 	}
-	@Test
-	public void deveRetornarFalseParaValorInvalido(){
-		Assertions.assertFalse(checkMaximumTextSizeValidation.isValid(StringUtils.repeat("A", 256)));		
+		
+	@ParameterizedTest
+	@ValueSource(strings = {"","32","123456", "1234567" } )
+	public void deveRetornarFalseParaValorInvalido(String value){
+		Assertions.assertFalse(checkMinimumTextSizeValidation.isValid(value));		
 	}
 	
 		

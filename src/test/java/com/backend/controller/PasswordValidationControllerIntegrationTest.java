@@ -1,7 +1,9 @@
-package com.backend.services;
+package com.backend.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -45,67 +47,21 @@ public class PasswordValidationControllerIntegrationTest {
 	}
 	
 	
-	@Test
-	public void passwordValidate_DeveRetornarFalseParaValorNulo(){
+	@ParameterizedTest()
+	@ValueSource(strings = {"","aa","ab", "AAAbbbCc","AbTp9!foo" ,"AbTp9!foA","AbTp9 fok","AbTp9!f1k~",
+			"AbTp9*f1kº","AbTp9)f1k§§'´","AbTp9(f1k]","AbTp9-]f1k","AbTp9+f1k["} )
+	public void passwordValidate_DeveRetornarFalseParaValoresInvalidos(){
 			
 		Assertions.assertFalse(chamaPasswordValidateUrl(new PasswordDTO(null)));
 		
 	}
 	
-	@Test
-	public void passwordValidate_DeveRetornarFalseParaValorVazio(){
+	@ParameterizedTest()
+	@ValueSource(strings = {"AbTp9!f1k","AbTp9@f1k","AbTp9#f1k","AbTp9$f1k","AbTp9%f1k",
+			"AbTp9&f1k","AbTp9&f1k","AbTp9*f1k","AbTp9*f1k","AbTp9)f1k","AbTp9(f1k","AbTp9-f1k","AbTp9+f1k","AbTp9^f1k"} )
+	public void passwordValidate_DeveRetornarTrueParaValorValido(String value){
 			
-		Assertions.assertFalse(chamaPasswordValidateUrl(new PasswordDTO("")));
-		
-	}
-	
-	@Test
-	public void passwordValidate_DeveRetornarFalseParaValorInvalido_1(){
-			
-		Assertions.assertFalse(chamaPasswordValidateUrl(new PasswordDTO("aa")));
-		
-	}
-	
-	@Test
-	public void passwordValidate_DeveRetornarFalseParaValorInvalido_2(){
-			
-		Assertions.assertFalse(chamaPasswordValidateUrl(new PasswordDTO("ab")));
-		
-	}
-	
-	@Test
-	public void passwordValidate_DeveRetornarFalseParaValorInvalido_3(){
-			
-		Assertions.assertFalse(chamaPasswordValidateUrl(new PasswordDTO("AAAbbbCc")));
-		
-	}
-	
-	@Test
-	public void passwordValidate_DeveRetornarFalseParaValorInvalido_4(){
-			
-		Assertions.assertFalse(chamaPasswordValidateUrl(new PasswordDTO("AbTp9!foo")));
-		
-	}
-	
-	@Test
-	public void passwordValidate_DeveRetornarFalseParaValorInvalido_5(){
-			
-		Assertions.assertFalse(chamaPasswordValidateUrl(new PasswordDTO("AbTp9!foA")));
-		
-	}
-	
-	@Test
-	public void passwordValidate_DeveRetornarFalseParaValorInvalido_6(){
-			
-		Assertions.assertFalse(chamaPasswordValidateUrl(new PasswordDTO("AbTp9 fok")));
-		
-	}
-	
-	
-	@Test
-	public void passwordValidate_DeveRetornarTrueParaValorValido_7(){
-			
-		Assertions.assertTrue(chamaPasswordValidateUrl(new PasswordDTO("AbTp9!fok")));
+		Assertions.assertTrue(chamaPasswordValidateUrl(new PasswordDTO(value)));
 		
 	}
 	

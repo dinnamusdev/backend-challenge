@@ -1,49 +1,43 @@
 package com.backend.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.backend.component.validation.Validation;
+
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @Service
-
 public class PasswordValidationService implements PasswordValidation {
 
 
 	
-	private PasswordContentVerify passwordContentVerify;
+	private List<Validation> listOfValidation;
 	
-	public PasswordValidationService(final PasswordContentVerify passwordContentVerify) {
-		this.passwordContentVerify=passwordContentVerify;
+	public PasswordValidationService(List<Validation> listOfValidation) {
+		this.listOfValidation=listOfValidation;
 	}
 
 	@Override
 	public boolean passwordValidation(String value) {
 
-		boolean isValid = false;
-
-		try {
-			if (value != null) {
-
-				value = value.trim();
-
-				isValid = passwordContentVerify.checkMinimumTextSize(value)
-						&& passwordContentVerify.checkMaximumTextSize(value)
-						&& passwordContentVerify.checkPresenceAtLessOneDigit(value)
-						&& passwordContentVerify.checkPresenceAtLessOneLowerLetter(value)
-						&& passwordContentVerify.checkPresenceAtLessOneUpperLetter(value)
-						&& passwordContentVerify.checkPresenceAtLessOneSpecialCharacter(value)
-						&& !passwordContentVerify.checkPresenceEmptySpaces(value)
-						&& !passwordContentVerify.checkPresenceOfRepeatedCharacters(value);
-				
+	
+		if(value==null) return false;
+		
+		value=value.trim();
+		
+		for (Validation validation : listOfValidation) {
+			
+			if(!validation.isValid(value)) {
+				log.info("Problema na validação do valor : "  +value +  " - validação : " +validation.toString() );
+				return false;
 			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			log.error("method(passwordValidation)",e);
 		}
-				
-		return isValid;
-
+					
+		return true;
+	
 	}
 
 }
