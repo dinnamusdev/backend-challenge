@@ -3,11 +3,11 @@ Spring boot Api Rest de validação de senha
 
 
 # Detalhes sobre a solução
-	Para implementar essa api inicialmente criei um componente que encapsulou todas as 	validações solicitadas.		
+	Para implementar essa api inicialmente criei um componente que encapsulou todas as	validações solicitadas.		
 	
-	Para realizar a validação da senha foi criado um serviço de validação que faz uso desse 	componente de validação.
+	Para realizar a validação da senha foi criado um serviço de validação que faz uso desse componente de validação.
 	
-	Tanto o serviço de validação como o componente validador são utilizados através de suas 	respectivas 	abstrações.
+	Tanto o serviço de validação como o componente validador são utilizados através de suas respectivas 	abstrações.
 	
 # Métodos da Api
 
