@@ -11,6 +11,8 @@ Tanto o serviço de validação como o componente validador são utilizados atra
 	
 # Sobre a api
 
+### Método
+
 | Método | Descrição |
 |---|---|
 | `POST` | realiza a operação de validação. |
