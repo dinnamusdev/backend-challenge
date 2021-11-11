@@ -15,18 +15,18 @@ Tanto o serviço de validação como o componente validador são utilizados atra
 |---|---|
 | `POST` | realiza a operação de validação. |
 
-## Resposta
+### Resposta
 | Código | Descrição |
 |---|---|
 | `200` | Operação de validação realizada |
 | `400` | Erros na operação de validação |
 
-## Método de validação de Senha [POST]
+### Método de validação de Senha [POST]
 Uri:  /validator/v1/public/password
 
 Utilize para a validação da senha. C
 
-## Dados para envio no POST
+### Dados para envio no POST
 | Parâmetro | Descrição |
 |---|---|
 | `password` | Informar: A senha a ser validada |
