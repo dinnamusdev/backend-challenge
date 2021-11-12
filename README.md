@@ -74,7 +74,7 @@ Utilize para a validação da senha. Caso a validação seja bem-sucedida a api 
   
   git clone https://github.com/dinnamusdev/backend-challenge.git
               
-# Procedimento para execução do api
+# Procedimento para rodar a api manualmente
 	1) Instalar o java JRE 1.8
 	1) Abrir o prompt de comando e/ou shell
 	1) Acessar a pasta raiz do projeto
