@@ -1,5 +1,5 @@
 # Documentação Api Backend-challenge
-Spring boot Api Rest de validação de senha
+Springboot api rest de validação de senha
 
 
 # Detalhes sobre a solução
@@ -21,7 +21,7 @@ Tanto o serviço de validação como o componente validador são utilizados atra
 | Código | Descrição |
 |---|---|
 | `200` | Operação de validação realizada |
-| `400` | Erros na operação de validação |
+| `400` | Problemas na operação de validação |
 
 ### Método da api de validação de Senha [POST]
 Uri:  /validator/v1/public/password
@@ -33,7 +33,9 @@ Utilize para a validação da senha. Caso a validação seja bem-sucedida a api 
 |---|---|
 | `password` | Informar: A senha a ser validada |
 
-+ Request (application/json)
+
++ Teste de senha válida
++ Request (application/json) 
 
     + Body
 
@@ -48,6 +50,24 @@ Utilize para a validação da senha. Caso a validação seja bem-sucedida a api 
             {
                 "passwordValidation": true                
             }
++ Teste de senha inválida
++ Request (application/json) 
+
+    + Body
+
+            {
+                "password": "AbTp9 !fok"                
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "passwordValidation": false                
+            }
+         
+
          
 # Clonar o projeto
   O projeto pode ser clonado pelo comando abaixo:
