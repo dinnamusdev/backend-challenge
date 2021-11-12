@@ -34,7 +34,7 @@ Utilize para a validação da senha. Caso a validação seja bem-sucedida a api 
 | `password` | Informar: A senha a ser validada |
 
 
-+ Teste de senha válida
+#### Teste de senha válida
 + Request (application/json) 
 
     + Body
@@ -50,7 +50,7 @@ Utilize para a validação da senha. Caso a validação seja bem-sucedida a api 
             {
                 "passwordValidation": true                
             }
-+ Teste de senha inválida
+#### Teste de senha inválida
 + Request (application/json) 
 
     + Body
