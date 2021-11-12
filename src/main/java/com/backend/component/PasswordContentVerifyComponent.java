@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.backend.component.validation.CheckMaximumTextSizeValidation;
@@ -21,6 +22,7 @@ import com.backend.component.validation.Validation;
 public class PasswordContentVerifyComponent  {
 	
 	@Bean
+	@Scope("application")
 	List<Validation> listOfValidation(){
 	
 		List<Validation> listValidation = new ArrayList<>();
