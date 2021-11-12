@@ -31,7 +31,7 @@ Utilize para a validação da senha. Caso a validação seja bem-sucedida a api 
 ### Dados para envio no POST
 | Parâmetro | Descrição |
 |---|---|
-| `password` | Informar: A senha a ser validada |
+| `password` | Informar a senha a ser validada |
 
 
 #### Teste de senha válida
