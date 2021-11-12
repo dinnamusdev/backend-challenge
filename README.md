@@ -48,7 +48,12 @@ Utilize para a validação da senha. Caso a validação seja bem-sucedida a api 
             {
                 "passwordValidation": true                
             }
-            
+         
+# Clonar o projeto
+  O projeto pode ser clonado pelo comando abaixo:
+  
+  git clone https://github.com/dinnamusdev/backend-challenge.git
+              
 # Procedimento para execução do api
 	1) Instalar o java JRE 1.8
 	1) Abrir o prompt de comando e/ou shell

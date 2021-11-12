@@ -25,9 +25,10 @@ class PasswordValidationServiceIntegrationTest {
 	
 	@ParameterizedTest
 	@ValueSource(strings = {"AbTp9!f1k","AbTp9@f1k","AbTp9#f1k","AbTp9$f1k","AbTp9%f1k",
-			"AbTp9&f1k","AbTp9&f1k","AbTp9*f1k","AbTp9*f1k","AbTp9)f1k","AbTp9(f1k","AbTp9-f1k","AbTp9+f1k","AbTp9^f1k"} )
-	void passwordValidation_RetornarTrueParaValorValido() {
-		Assertions.assertTrue(passwordValidationService.passwordValidation("AbTp9!f1k"));
+			"AbTp9&f1k","AbTp9&f1k","AbTp9*f1k","AbTp9*f1k","AbTp9)f1k","AbTp9(f1k","AbTp9-f1k"
+			,"AbTp9+f1k","AbTp9^f1k"} )
+	void passwordValidation_RetornarTrueParaValorValido(String value) {
+		Assertions.assertTrue(passwordValidationService.passwordValidation(value));
 	}
 
 }

@@ -17,17 +17,15 @@ import com.backend.component.validation.CheckAbsentEmptySpacesValidation;
 import com.backend.component.validation.CheckAbsentOfRepeatedCharactersValidation;
 import com.backend.component.validation.Validation;
 
-
 @Component
-public class PasswordContentVerifyComponent  {
-	
+public class PasswordContentVerifyComponent {
+
 	@Bean
 	@Scope("application")
-	List<Validation> listOfValidation(){
-	
+	List<Validation> listOfValidation() {
+
 		List<Validation> listValidation = new ArrayList<>();
-		
-		
+
 		listValidation.add(new CheckMaximumTextSizeValidation());
 		listValidation.add(new CheckMinimumTextSizeValidation());
 		listValidation.add(new CheckPresenceAtLessOneDigitValidation());
@@ -37,13 +35,9 @@ public class PasswordContentVerifyComponent  {
 		listValidation.add(new CheckPresenceAtLessOneUpperLetterValidation());
 		listValidation.add(new CheckAbsentEmptySpacesValidation());
 		listValidation.add(new CheckAbsentOfRepeatedCharactersValidation());
-		
+
 		return listValidation;
-		
-		
-		
-		
+
 	}
 
-	
 }

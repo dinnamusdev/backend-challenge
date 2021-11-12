@@ -12,32 +12,28 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class PasswordValidationService implements PasswordValidation {
 
-
-	
 	private List<Validation> listOfValidation;
-	
+
 	public PasswordValidationService(List<Validation> listOfValidation) {
-		this.listOfValidation=listOfValidation;
+		this.listOfValidation = listOfValidation;
 	}
 
 	@Override
 	public boolean passwordValidation(String value) {
 
-	
-		if(value==null) return false;
-		
-		value=value.trim();
+		if (value == null)
+			return false;
 		
 		for (Validation validation : listOfValidation) {
-			
-			if(!validation.isValid(value)) {
-				log.info("Problema na validação do valor : "  +value +  " - validação : " +validation.toString() );
+
+			if (!validation.isValid(value)) {
+				log.info("validation failed: " + validation.toString());
 				return false;
 			}
 		}
-					
+
 		return true;
-	
+
 	}
 
 }

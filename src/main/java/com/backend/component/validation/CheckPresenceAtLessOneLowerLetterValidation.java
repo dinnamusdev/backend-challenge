@@ -4,27 +4,17 @@ import com.backend.util.StringsUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class CheckPresenceAtLessOneLowerLetterValidation implements Validation {
 
 	@Override
-	public boolean isValid(String value) {
-		
-				
-		if (value == null) {
-			log.error("informado valor nulo");
-			return false;
-		} else {
-			boolean isValid = false;
+	public boolean isValid(String value) {		
+		if (value != null && !value.isEmpty() ) {
 			for (char ch : value.toCharArray()) {
-				if (StringsUtil.isAlpha(String.valueOf(ch)) && Character.isLowerCase(ch) ) {
-					isValid = true;
-					break;
+				if (StringsUtil.isAlpha(ch) && Character.isLowerCase(ch) ) {
+					return true;					
 				}
-			}
-			return isValid;
+			}			
 		}
-		
+		return false;		
 	}
-
 }

@@ -1,13 +1,11 @@
 package com.backend.util;
 
 public class StringsUtil {
-
-	static private String ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZÇ";
-
 	
-	public static boolean isAlpha(String letra) {
+	public static boolean isAlpha(char letra) {
 		
+		return (letra>='a' && letra<='z')  || (letra>='A' && letra<='Z') ; 
 		
-		return letra!=null && ALFABETO.contains(letra.toUpperCase());
 	}
+		
 }
